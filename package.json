@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "URL Shortner Application",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },
