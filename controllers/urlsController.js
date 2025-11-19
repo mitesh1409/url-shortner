@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 import { URL } from "../models/url.model.js";
 
 async function listUrls(req, res) {
@@ -7,6 +9,27 @@ async function listUrls(req, res) {
 
 function showFormToGenerateShortUrl(req, res) {
     res.render('urls/generate');
+}
+
+async function generateShortUrl(req, res) {
+  console.log('req.body', req.body);
+  const originalUrl = req.body ? req.body.originalUrl ?? undefined : undefined;
+
+  if (!originalUrl) {
+    return res
+      .status(400)
+      .render('urls/generate', { error: 'Original URL is required' });
+  }
+
+  // Generate an 8-character unique ID
+  const shortId = nanoid(8);
+
+  await URL.create({
+    shortId,
+    originalUrl
+  });
+
+  return res.redirect('/urls');
 }
 
 async function redirectToOriginalUrl(req, res) {
@@ -30,5 +53,6 @@ async function redirectToOriginalUrl(req, res) {
 export {
     listUrls,
     showFormToGenerateShortUrl,
+    generateShortUrl,
     redirectToOriginalUrl
 };

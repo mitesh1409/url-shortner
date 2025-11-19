@@ -12,6 +12,7 @@ const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.set('views', path.join(__dirname, 'views'));
