@@ -19,7 +19,7 @@ const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 3000;
 
 app.get('/', homeController);
-app.use('/urls', urlsApiRouter);
+app.use('/api/urls', urlsApiRouter);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server is running at http://${HOST}:${PORT}`);
