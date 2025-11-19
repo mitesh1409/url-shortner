@@ -79,9 +79,14 @@ async function signin(req, res) {
     res.send('User signed in successfully.');
 }
 
+function showDashboard(req, res) {
+    res.render('users/dashboard', { user: req.user });
+}
+
 export {
     showSignupForm,
     signup,
     showSignInForm,
-    signin
+    signin,
+    showDashboard
 };

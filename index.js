@@ -8,12 +8,15 @@ import { urlsRouter } from './routes/urls.router.js';
 import { urlsApiRouter } from './routes/urlsApi.router.js';
 import { homeController } from './controllers/homeController.js';
 import { usersRouter } from './routes/users.router.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// parse cookies from incoming requests (makes `req.cookies` available)
+app.use(cookieParser());
 app.set('view engine', 'ejs');
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.set('views', path.join(__dirname, 'views'));
