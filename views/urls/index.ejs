@@ -10,10 +10,10 @@
 
     <h2>List of URLs</h2>
     <% if (urls.length > 0) { %>
-        <% urls.forEach(url => { %>
+        <% urls.forEach((url, index) => { %>
             <div style="padding: 10px; background-color: #f0f0f0; border: 1px solid #a0a0a0; border-radius: 5px; margin-bottom: 10px;">
                 <h5>
-                    Original URL: <a href="<%= url.originalUrl %>" target="_blank"><%= url.originalUrl %></a>
+                    <%= `#${index + 1}` %> Original URL: <a href="<%= url.originalUrl %>" target="_blank"><%= url.originalUrl %></a>
                 </h5>
                 <p>Short ID: <%= url.shortId %></p>
                 <p>Created At: <%= url.createdAt %></p>
