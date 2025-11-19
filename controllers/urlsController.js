@@ -5,6 +5,10 @@ async function listUrls(req, res) {
     res.render('urls/index', { urls });
 }
 
+function showFormToGenerateShortUrl(req, res) {
+    res.render('urls/generate');
+}
+
 async function redirectToOriginalUrl(req, res) {
   const shortId = req.params.shortId;
 
@@ -25,5 +29,6 @@ async function redirectToOriginalUrl(req, res) {
 
 export {
     listUrls,
+    showFormToGenerateShortUrl,
     redirectToOriginalUrl
 };
