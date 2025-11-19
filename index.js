@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'node:url';
 
 import { connectDB } from './config/db.js';
-import { urlRouter } from './routes/url.router.js';
+import { urlsApiRouter } from './routes/urlsApi.router.js';
 import { homeController } from './controllers/homeController.js';
 
 const app = express();
@@ -19,7 +19,7 @@ const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 3000;
 
 app.get('/', homeController);
-app.use('/url', urlRouter);
+app.use('/urls', urlsApiRouter);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server is running at http://${HOST}:${PORT}`);
