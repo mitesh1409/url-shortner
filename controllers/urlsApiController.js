@@ -27,7 +27,7 @@ async function generateShortUrl(req, res) {
     .status(201)
     .json({
         status: 'Created',
-        shortUrl: `${req.protocol}://${req.get('host')}/${shortId}`
+        shortUrl: `${req.protocol}://${req.get('host')}/urls/${shortId}`
     });
 }
 
