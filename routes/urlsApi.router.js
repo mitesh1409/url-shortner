@@ -1,13 +1,13 @@
 import express from 'express';
 
-import * as urlApiController from '../controllers/urlApiController.js';
+import * as urlsApiController from '../controllers/urlsApiController.js';
 
 const urlsApiRouter = express.Router();
 
 // POST /api/urls - Generate a short URL
-urlsApiRouter.post('/', urlApiController.generateShortUrl);
+urlsApiRouter.post('/', urlsApiController.generateShortUrl);
 // GET /api/urls/analytics/:shortId - Get URL analytics
-urlsApiRouter.get('/analytics/:shortId', urlApiController.getUrlAnalytics);
+urlsApiRouter.get('/analytics/:shortId', urlsApiController.getUrlAnalytics);
 
 export {
     urlsApiRouter
