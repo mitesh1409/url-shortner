@@ -4,9 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'node:url';
 
 import { connectDB } from './config/db.js';
+import { urlsRouter } from './routes/urls.router.js';
 import { urlsApiRouter } from './routes/urlsApi.router.js';
 import { homeController } from './controllers/homeController.js';
-import * as urlsController from './controllers/urlsController.js';
 
 const app = express();
 dotenv.config();
@@ -20,7 +20,7 @@ const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 3000;
 
 app.get('/', homeController);
-app.get('/urls', urlsController.listUrls);
+app.use('/urls', urlsRouter);
 app.use('/api/urls', urlsApiRouter);
 
 app.listen(PORT, HOST, () => {

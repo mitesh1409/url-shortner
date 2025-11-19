@@ -31,29 +31,6 @@ async function generateShortUrl(req, res) {
     });
 }
 
-async function redirectToOriginalUrl(req, res) {
-  const shortId = req.params.shortId;
-
-  const urlEntry = await URL.findOne({ shortId });
-
-  if (!urlEntry) {
-    return res
-      .status(404)
-      .json({
-        status: 'Not Found',
-        errors: [
-            'Short URL not found'
-        ]
-    });
-  }
-
-  // Log the visit
-  urlEntry.visitHistory.push({ timestamp: new Date() });
-  await urlEntry.save();
-
-  return res.redirect(urlEntry.originalUrl);
-}
-
 async function getUrlAnalytics(req, res) {
   const shortId = req.params.shortId;
 
@@ -82,6 +59,5 @@ async function getUrlAnalytics(req, res) {
 
 export {
     generateShortUrl,
-    redirectToOriginalUrl,
     getUrlAnalytics
 };
