@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { connectDB } from './config/db.js';
 import { urlRouter } from './routes/url.router.js';
+import { homeController } from './controllers/homeController.js';
 
 const app = express();
 dotenv.config();
@@ -17,9 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the URL Shortener Service!');
-});
+app.get('/', homeController);
 app.use('/url', urlRouter);
 
 app.listen(PORT, HOST, () => {
