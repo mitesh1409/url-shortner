@@ -54,7 +54,34 @@ async function redirectToOriginalUrl(req, res) {
   return res.redirect(urlEntry.originalUrl);
 }
 
+async function getUrlAnalytics(req, res) {
+  const shortId = req.params.shortId;
+
+  const urlEntry = await URL.findOne({ shortId });
+
+  if (!urlEntry) {
+    return res
+      .status(404)
+      .json({
+        status: 'Not Found'
+    });
+  }
+
+  return res
+    .status(200)
+    .json({
+        status: 'OK',
+        data: {
+            originalUrl: urlEntry.originalUrl,
+            createdAt: urlEntry.createdAt,
+            visitCount: urlEntry.visitHistory.length,
+            visitHistory: urlEntry.visitHistory
+        }
+    });
+}
+
 export {
     generateShortUrl,
-    redirectToOriginalUrl
+    redirectToOriginalUrl,
+    getUrlAnalytics
 };
