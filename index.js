@@ -7,6 +7,7 @@ import { connectDB } from './config/db.js';
 import { urlsRouter } from './routes/urls.router.js';
 import { urlsApiRouter } from './routes/urlsApi.router.js';
 import { homeController } from './controllers/homeController.js';
+import { usersRouter } from './routes/users.router.js';
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,7 @@ const PORT = process.env.PORT || 3000;
 app.get('/', homeController);
 app.use('/urls', urlsRouter);
 app.use('/api/urls', urlsApiRouter);
+app.use('/users', usersRouter);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server is running at http://${HOST}:${PORT}`);
