@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner | List of URLs</title>
+</head>
+<body>
+    <h1>Welcome to URL Shortner Application :)</h1>
+
+    <h2>List of URLs</h2>
+    <% if (urls.length > 0) { %>
+        <ul>
+            <% urls.forEach(url => { %>
+                <li>Original URL: <%= url.originalUrl %> | Short ID: <%= url.shortId %> | Created At: <%= url.createdAt %> | Visits Count: <%= url.visitHistory.length %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No URLs found.</p>
+    <% } %>
+</body>
+</html>
