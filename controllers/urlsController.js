@@ -30,7 +30,8 @@ async function generateShortUrl(req, res) {
 
   await URL.create({
     shortId,
-    originalUrl
+    originalUrl,
+    createdBy: req.user._id
   });
 
   return res.redirect('/urls');
