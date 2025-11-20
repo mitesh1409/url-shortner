@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { URL } from "../models/url.model.js";
 
 async function listUrls(req, res) {
-    const urls = await URL.find({}).sort({ createdAt: -1 });
+    const urls = await URL.find({ createdBy: req.user._id }).sort({ createdAt: -1 });
     res.render('urls/index', {
         urls,
         protocol: req.protocol,
