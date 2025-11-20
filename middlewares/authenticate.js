@@ -1,13 +1,13 @@
 import * as authService from '../services/auth.js';
 
 function authenticate(req, res, next) {
-    const sessionToken = req.cookies.sessionToken;
+    const jwtToken = req.cookies.token;
 
-    if (!sessionToken) {
+    if (!jwtToken) {
         return res.redirect('/users/signin');
     }
 
-    const user = authService.getUser(sessionToken);
+    const user = authService.getUser(jwtToken);
     if (!user) {
         return res.redirect('/users/signin');
     }

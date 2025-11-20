@@ -1,6 +1,5 @@
 import { User } from '../models/user.model.js';
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
 import * as authService from '../services/auth.js';
 
 function showSignupForm(req, res) {
@@ -67,14 +66,11 @@ async function signin(req, res) {
             .render('users/signin', { error: 'Invalid email or password.' });
     }
 
-    // Generate a session token using uuidv4().
-    const sessionToken = uuidv4();
+    // Generate JWT token for this user.
+    const jwtToken = authService.setJwt(user);
 
-    // Here you would typically store the session token in your database or in-memory store.
-    authService.setUser(sessionToken, user);
-
-    // Set the session token as a cookie in the response.
-    res.cookie('sessionToken', sessionToken, { httpOnly: true });
+    // Set the token as a cookie in the response.
+    res.cookie('token', jwtToken, { httpOnly: true });
 
     res.send('User signed in successfully.');
 }
